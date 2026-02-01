@@ -1,0 +1,17 @@
+
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      MYSQL_DSN: root:root@tcp(db:3306)/xyz?parseTime=true
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: xyz
